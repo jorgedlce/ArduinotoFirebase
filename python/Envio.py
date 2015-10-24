@@ -29,7 +29,7 @@ while 1:
     #print(time);
     #dividir en ,
     cadena=tupla.split(",")
-    data = {'flama': int(cadena[0]),'humedad': int(cadena[1]),'distancia':int(cadena[2]),'alcohol':int(cadena[3]), 'hora': int(cadena[1]),'luz':int(cadena[4]),'time':time}
+    data = {'flama': int(cadena[0]),'humedad': int(cadena[1]),'proximidad':int(cadena[2]),'alcohol':int(cadena[3]),'luz':int(cadena[4]),'hora':time}
     #el snapshot te devuelve el valor id de firebase del dato enviado
     snapshot = firebase.post('/datos', data)
   except:

@@ -15,6 +15,9 @@
                 <thead>
                 <tr>
                     <th>Fecha</th>
+                    <th>Alcohol</th>
+                    <th>Proximidad</th>
+                    <th>Fuego</th>
                     <th>
                     Humedad
                         <a  tabindex="0" role="button" data-toggle="popover" data-trigger="hover"
@@ -26,16 +29,17 @@
                             <span class="glyphicon glyphicon-question-sign"> </span>
                         </a>
                     </th>
-                    <th>Proximidad</th>
-                    <th>Temperatura</th>
+                    <th>Luz Ambiental</th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="dato in list">
                     <tr>
-                        <td>{{ dato.fecha }}</td>
-                        <td>{{ dato.humedad }}</td>
+                        <td>{{ dato.hora }}</td>
+                        <td>{{ dato.alcohol }}</td>
                         <td>{{ dato.proximidad }}</td>
-                        <td>{{ dato.temperatura }}</td>
+                        <td>{{ dato.flama }}</td>
+                        <td>{{ dato.humedad }}</td>
+                        <td>{{ dato.luz }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -45,9 +49,11 @@
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li>Miller </li>
-                        <li>Gian Carlos Huachin Sairitupac 11200117</li>
-                        <li>Jorge Luis De la Cruz Espinoza 11200065</li>
+                        <li>Henry Miller León Chañi         11200013 </li>
+                        <li>Gian Carlos Huachin Sairitupac  11200117</li>
+                        <li>Jorge Luis De la Cruz Espinoza  11200065</li>
+                        <li>Jean Pierre Alejandría Niño     11200224</li>
+                        <li>Jose Fernando Ayasta Cachay     11200176</li>
                     </ul>
                 </div>
             </section>

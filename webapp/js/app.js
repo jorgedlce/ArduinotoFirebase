@@ -1,9 +1,14 @@
 var app = angular.module("datosApp", ["firebase", "highcharts-ng"]);
 
 app.controller("DatosController", function($scope, $firebase) {
-  //$scope.horaSeries = [];
+  $scope.alcoholSeries = [];
+  $scope.proximidadSeries = [];
+  $scope.fuegoSeries = [];
   $scope.humedadSeries = [];
-  //$scope.proximidadSeries = [];
+  $scope.luzSeries = [];
+  $scope.horaSeries = [];
+  
+
   // now we can use $firebase to synchronize data between clients and the server!
   var ref = new Firebase("https://ejemplox.firebaseio.com/").child("datos");
 
@@ -13,26 +18,41 @@ app.controller("DatosController", function($scope, $firebase) {
           // key will be "fred" the first time and "wilma" the second time
           // var key = childSnapshot.key();
           // childData will be the actual contents of the child
-          //$scope.horaSeries.push(parseInt(childSnapshot.val().hora));
+          $scope.alcoholSeries.push(parseInt(childSnapshot.val().alcohol));
+          $scope.proximidadSeries.push(parseInt(childSnapshot.val().proximidad));
+          $scope.fuegoSeries.push(parseInt(childSnapshot.val().fuego));
           $scope.humedadSeries.push(parseInt(childSnapshot.val().humedad));
-          //$scope.proximidadSeries.push(parseInt(childSnapshot.val().proximidad));
+          $scope.luzSeries.push(parseInt(childSnapshot.val().luz));
+          $scope.horaSeries.push(childSnapshot.val().hora);
        });
 
-       //var p = $scope.proximidadSeries;
-       //p = p.slice(p.length - 20, p.length);
+      //alcohol
+      var a = $scope.alcoholSeries;
+      a = a.slice(a.length-20,a.length);
+      $scope.chartConfig.series[0].data=a;
+
+      //proximidad
+       var p = $scope.proximidadSeries;
+       p = p.slice(p.length - 20, p.length);
        //var prox = []
        //p.forEach(function(dato) {
        //    if(!isNaN(dato))
        //     prox.push(dato);
        //   else prox.push(0);
        //});
-       //$scope.chartConfig.series[0].data = prox;
+       $scope.chartConfig.series[1].data = p;
+       /*
+      //fuego
+      var f = $scope.fuegoSeries;
+      f = f.slice(f.length-20,f.length);
+      $scope.chartConfig.series[2].data=f;
+     */
+      //humedad 
+      var h = $scope.humedadSeries;
+      $scope.chartConfig.series[3].data = h.slice(h.length - 20, h.length);
        
-       var h = $scope.humedadSeries;
-       $scope.chartConfig.series[1].data = h.slice(h.length - 20, h.length);
-       
-       //var t = $scope.temperaturaSeries;
-       //$scope.chartConfig.series[2].data = t.slice(t.length - 20, t.length);
+      var l = $scope.luzSeries;
+      $scope.chartConfig.series[4].data = l.slice(l.length - 20, l.length);
 
   });
     
@@ -41,26 +61,40 @@ app.controller("DatosController", function($scope, $firebase) {
   
   $scope.chartSeries = [
     {
-        name: "Proximidad",
+        name: "Alcohol",
         id: "series-0",
         data: [],
         type: "line",
         connectNulls: true
     },
     {
-        name: "Humedad",
+        name: "Proximidad",
         id: "series-1",
         data: [],
         type: "line",
         connectNulls: true
-    }/*,
+    },
     {
-        name: "Temperatura",
+        name: "Fuego",
         id: "series-2",
         data: [],
         type: "line",
         connectNulls: true
-    }*/
+    },
+    {
+        name: "Humedad",
+        id: "series-3",
+        data: [],
+        type: "line",
+        connectNulls: true
+    },
+    {
+        name: "Luz Ambiental",
+        id: "series-4",
+        data: [],
+        type: "line",
+        connectNulls: true
+    }
   ];
 
   $scope.chartConfig = {
