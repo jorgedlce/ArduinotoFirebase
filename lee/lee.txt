@@ -1,0 +1,3 @@
+nesecitaras la libreria de firebase y pyserial
+ademas para que funcione correctamente debes instalar esto en el terminal:
+pip install requests[security]
