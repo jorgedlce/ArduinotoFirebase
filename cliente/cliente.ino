@@ -1,4 +1,4 @@
-int flama;
+
 int humedad;
 int alcohol;
 int luz;
@@ -9,13 +9,9 @@ void setup() {
 }
  
 void loop(){
-  //sensor de flama o fuego
-  flama=analogRead(5); // Signal wire(green one) connect to analog pin 5. Red one connect to VCC and black one connect to GND.
-  Serial.print(flama,DEC );
-  
+
   //sensor de humedad
   humedad=analogRead(A0);
-  Serial.print(",");    
   Serial.print(humedad);  
 
   //sensor de disancia

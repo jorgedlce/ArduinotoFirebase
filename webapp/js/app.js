@@ -3,7 +3,6 @@ var app = angular.module("datosApp", ["firebase", "highcharts-ng"]);
 app.controller("DatosController", function($scope, $firebase) {
   $scope.alcoholSeries = [];
   $scope.proximidadSeries = [];
-  $scope.fuegoSeries = [];
   $scope.humedadSeries = [];
   $scope.luzSeries = [];
   $scope.horaSeries = [];
@@ -20,7 +19,6 @@ app.controller("DatosController", function($scope, $firebase) {
           // childData will be the actual contents of the child
           $scope.alcoholSeries.push(parseInt(childSnapshot.val().alcohol));
           $scope.proximidadSeries.push(parseInt(childSnapshot.val().proximidad));
-          $scope.fuegoSeries.push(parseInt(childSnapshot.val().fuego));
           $scope.humedadSeries.push(parseInt(childSnapshot.val().humedad));
           $scope.luzSeries.push(parseInt(childSnapshot.val().luz));
           $scope.horaSeries.push(childSnapshot.val().hora);
@@ -41,18 +39,15 @@ app.controller("DatosController", function($scope, $firebase) {
        //   else prox.push(0);
        //});
        $scope.chartConfig.series[1].data = p;
-       /*
-      //fuego
-      var f = $scope.fuegoSeries;
-      f = f.slice(f.length-20,f.length);
-      $scope.chartConfig.series[2].data=f;
-     */
+
+
+
       //humedad 
       var h = $scope.humedadSeries;
-      $scope.chartConfig.series[3].data = h.slice(h.length - 20, h.length);
+      $scope.chartConfig.series[2].data = h.slice(h.length - 20, h.length);
        
       var l = $scope.luzSeries;
-      $scope.chartConfig.series[4].data = l.slice(l.length - 20, l.length);
+      $scope.chartConfig.series[3].data = l.slice(l.length - 20, l.length);
 
   });
     
@@ -75,22 +70,15 @@ app.controller("DatosController", function($scope, $firebase) {
         connectNulls: true
     },
     {
-        name: "Fuego",
+        name: "Humedad",
         id: "series-2",
         data: [],
         type: "line",
         connectNulls: true
     },
     {
-        name: "Humedad",
-        id: "series-3",
-        data: [],
-        type: "line",
-        connectNulls: true
-    },
-    {
         name: "Luz Ambiental",
-        id: "series-4",
+        id: "series-3",
         data: [],
         type: "line",
         connectNulls: true
